@@ -21,8 +21,8 @@ Für die Nutzung der Skripte wird benötigt:
 - Python 3
 - [certbot](https://certbot.eff.org/)
 
-Die Skripte wurden unter Linux getestet und ursprünglich für meinen privaten Blog 
-https://sebstein.hpfsc.de/ entwickelt.
+Die Skripte wurden unter Linux getestet und 
+[das Vorgehen auf meinem Blog beschrieben](https://sebstein.hpfsc.de/2017/09/17/lets-encrypt-mit-hosteurope-webhosting-nutzen/).
 
 
 ## Konfiguration
