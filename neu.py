@@ -1,10 +1,10 @@
 import json
 import os
 
-from shared import domain_list
+from shared import domain_list, configFile
 
 # Einstellungen einlesen
-with open('einstellungen.json') as config_file:
+with open(configFile('einstellungen.json')) as config_file:
     config = json.load(config_file)
 email = config['email']
 staging = config['staging']
