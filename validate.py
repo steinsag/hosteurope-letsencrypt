@@ -4,13 +4,13 @@ import logging
 import os
 import uuid
 
-from shared import configFile
+from shared import config_file
 
 # manuelles Logging, da certbot Ausgabe dieses Skripts unterdrückt
 logging.basicConfig(filename='validation.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
 
 # Mapping zwischen Domains und Verzeichnis auf FTP laden
-with open(configFile('domains.json')) as domain_file:
+with open(config_file('domains.json')) as domain_file:
     DOMAINS = json.load(domain_file)
 
 # zu validierende Domain, Dateinamen and Token Inhalt werden von certbot per Umgebungsvariable übergeben
@@ -28,7 +28,7 @@ if not path:
     exit(1)
 
 # FTP Zugangsdaten laden
-with open(configFile('ftp.json')) as ftp_file:
+with open(config_file('ftp.json')) as ftp_file:
     ftp_cfg = json.load(ftp_file)
 
 # mit FTP verbinden
