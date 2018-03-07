@@ -1,9 +1,9 @@
 import json
 import os
 
-from shared import domain_list
+from shared import domain_list, config_file
 
-with open('einstellungen.json') as config_file:
+with open(config_file('einstellungen.json')) as config_file:
     config = json.load(config_file)
 staging = config['staging']
 

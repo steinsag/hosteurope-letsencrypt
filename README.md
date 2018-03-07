@@ -28,7 +28,7 @@ Die Skripte wurden unter Linux getestet und
 ## Konfiguration
 
 Die Skripte werden mittels 3 JSON Dateien konfiguriert, die manuell zu erstellen sind.
-Die Konfigurationsdateien müssen im gleichen Verzeichnis wie die Python Skripte liegen.
+Die Konfigurationsdateien müssen entweder im gleichen Verzeichnis wie die Python Skripte oder im Verzeichnis `~/.config/hosteurope-letsencrypt` liegen.
 
 In der Datei __einstellungen.json__ wird die im Zertifikat zu hinterlegende Emailadresse gepflegt.
 Weiterhin wird konfiguriert, ob die 
