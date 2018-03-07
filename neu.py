@@ -4,8 +4,8 @@ import os
 from shared import domain_list, config_file
 
 # Einstellungen einlesen
-with open(config_file('einstellungen.json')) as config_file:
-    config = json.load(config_file)
+with open(config_file('einstellungen.json')) as cfg_file:
+    config = json.load(cfg_file)
 email = config['email']
 staging = config['staging']
 
