@@ -1,3 +1,4 @@
+# coding=utf-8
 import ftplib
 import json
 import logging
