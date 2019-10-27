@@ -16,12 +16,30 @@ with open(config_file('domains.json')) as domain_file:
 
 # zu validierende Domain, Dateinamen and Token Inhalt werden von certbot per Umgebungsvariable übergeben
 domain = os.environ['CERTBOT_DOMAIN']
-filename = os.environ['CERTBOT_TOKEN']
+filename = None
+if 'CERTBOT_TOKEN' in os.environ:
+    filename = os.environ['CERTBOT_TOKEN']
 content = os.environ['CERTBOT_VALIDATION']
 
+logging.debug('Challenge: ' + ("http" if filename != None else "dns"))
 logging.debug('Domain: ' + domain)
-logging.debug('Dateiname: ' + filename)
 logging.debug('Inhalt: ' + content)
+if filename != None:
+    logging.debug('Dateiname: ' + filename)
+
+
+if filename == None or len(filename) == 0:
+    # Filename is only available if the HTTP challenge is used. For the DNS challenge it's not available.
+    print("validate: Assuming challenge = DNS\n")
+    print("validate: Create the following DNS entry\n")
+    print("""_acme-challenge.%s. 300 IN TXT "%s" """ % (domain, content), flush=True)
+    print('Confirm with "j" to proceed with DNS validation! (j/n): ', flush=True)
+
+    proceed = input('Confirm with "j" to proceed with DNS validation! (j/n): ')
+    if proceed != 'j':
+        print("Aborting.")
+        exit(1)
+    exit(0)
 
 path = DOMAINS.get(domain)
 if not path:
