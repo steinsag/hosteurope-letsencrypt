@@ -13,6 +13,8 @@ die gewünschten Domains zu erstellen oder zu verlängern
 Das abschließende Einbinden des Zertifikats bleibt ein manueller Schritt, da Hosteurope dafür keine API
 bietet, die eine Automatisierung ermöglicht.
 
+Dieses Vorgehen wurde auch mit dem gegenüber den WebHosting Paketen eingeschränkten __Bloghosting (Wordpress)__ erfolgreich durchgeführt.
+
 
 ## Anforderungen
  
@@ -21,8 +23,8 @@ Für die Nutzung der Skripte wird benötigt:
 - Python 3
 - [certbot](https://certbot.eff.org/)
 
-Die Skripte wurden unter Linux getestet und 
-[das Vorgehen auf meinem Blog beschrieben](https://sebstein.hpfsc.de/2017/09/17/lets-encrypt-mit-hosteurope-webhosting-nutzen/).
+Die Skripte wurden unter Linux sowie dem Windows Subsystem for Linux getestet und 
+[das Vorgehen auf diesem Blog beschrieben](https://sebstein.hpfsc.de/2017/09/17/lets-encrypt-mit-hosteurope-webhosting-nutzen/).
 
 
 ## Konfiguration
@@ -78,7 +80,7 @@ Webserver im Unterverzeichnis _.well-known/acme-challenge_.
 
 __Achtung__: Wenn Du __Hosteurope Bloghosting (Wordpress)__ verwendest, ist zusätzliche Konfiguration nötig, damit die Domainvalidierung von __Let's Encrypt__ funktioniert.
 
-### Setup für _Hosteurope Bloghosting_
+### Konfiguration für _Hosteurope Bloghosting_
 
 Um die [Domain zu validieren](https://letsencrypt.org/docs/challenge-types/) fragt __Let's Encrypt__, falls die HTTP-01 Challenge verwendet wird, eine URL ab: `http://<YOUR_DOMAIN>/.well-known/acme-challenge/<TOKEN>`.
 Die Hosteurope Bloghosting Pakete kontrollieren die Dateien in `/`; als Kunde kann man per FTP lediglich Dateien im _Wordpress -Verzeichnis_ `cust_upload/` ablegen.
@@ -86,7 +88,7 @@ Die Hosteurope Bloghosting Pakete kontrollieren die Dateien in `/`; als Kunde ka
 Wir müssen also sicherstellen, dass die Validierung über `/.well-known/acme-challenge/<TOKEN>` funktioniert, in dem die von diesen Skripten (`validate.py` automatisiert den Tokenupload über FTP) erzeugte Datei geladen wird.
 
 
-Installiere das Wordpress Plugin [__Redirection__](https://redirection.me/)_
+Installiere das Wordpress Plugin [__Redirection__](https://redirection.me/)
 
 In den Optionen des Plugins setze __IP-Protokollierung__ auf `keine` oder `Anonymisiert` #DSGVO
 
@@ -108,7 +110,7 @@ Lege nun eine _Umleitung_ an mit folgenden Parametern:
 In der oben genannten Ziel-URL ist der Pfadanteil `www/` enthalten. Dieses Verzeichnis musst Du selbst (z.B. per FTP) innerhalb von `cust_upload/` anlegen. Ausserdem muss dieser Pfad als Mapping in __domains.json__ angegeben werden, damit der Upload des Tokens die Datei wie von _Let's Encrypt_ erwartet erzeugen kann.
 
 
-## Nutzung
+## Nutzung der Skripte
 
 Ein neues Zertifikat wird erstellt mittels:
 
