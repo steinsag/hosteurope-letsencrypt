@@ -93,14 +93,14 @@ In den Optionen des Plugins setze __IP-Protokollierung__ auf `keine` oder `Anony
 Damit das Redirection Plugin funktioniert, muss eine Wordpress `.htaccess` vorhanden sein. Diese kannst du automatisch erzeugen lassen, indem Du _Einstellungen > Permalinks_ öffnest und speicherst.
 
 Lege nun eine _Umleitung_ an mit folgenden Parametern:
-| Parameter | Wert |
+| Parameter            | Wert                                                                 |
 |----------------------|----------------------------------------------------------------------|
-| URL-Quelle | `^/\.well-known/acme-challenge/(.*)` |
-| Titel | `true` aktiviert die Verwendung der Let's Encrypt Staging Umgebung. |
-| Passend | `Nur URL` |
-| Wenn übereinstimmend | `Umleitung zur URL` |
-| HTTP-Status Code | `301 Dauerhaft verschoben` |
-| Ziel-URL | `http://<YOUR_DOMAIN>/cust_upload/www/.well-known/acme-challenge/$1` |
+| URL-Quelle           | `^/\.well-known/acme-challenge/(.*)`                                 |
+| Titel                | `true` aktiviert die Verwendung der Let's Encrypt Staging Umgebung.  |
+| Passend              | `Nur URL`                                                            |
+| Wenn übereinstimmend | `Umleitung zur URL`                                                  |
+| HTTP-Status Code     | `301 Dauerhaft verschoben`                                           |
+| Ziel-URL             | `http://<YOUR_DOMAIN>/cust_upload/www/.well-known/acme-challenge/$1` |
 
 In der oben genannten Ziel-URL ist der Pfadanteil `www/` enthalten. Dieses Verzeichnis musst Du selbst (z.B. per FTP) innerhalb von `cust_upload/` anlegen. Ausserdem muss dieser Pfad als Mapping in __domains.json__ angegeben werden, damit der Upload des Tokens die Datei wie von _Let's Encrypt_ erwartet erzeugen kann.
 
