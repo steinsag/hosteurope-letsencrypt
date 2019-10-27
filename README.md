@@ -39,8 +39,16 @@ zum Beispiel noch mit den richtigen Parametern experimentiert.
 
     {
       "email": "webmaster@example.com",
-      "staging": false
+      "staging": false,
+      "preferred-challenge": "http"
     }
+
+| Parameter | Bedeutung |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| email |  E-Mail Adresse für den Let's Encrypt Account. |
+| staging | `true` aktiviert die Verwendung der Let's Encrypt Staging Umgebung. |
+| preferred-challenge |  Standard: http. Dies setzt die zu verwendende [Let's Encrypt Challenge](https://letsencrypt.org/docs/challenge-types/ ) auf HTTP oder DNS. |
+
 
 In der Datei __domains.json__ gibt man die Domains an, für die ein Zertifikat erstellt werden soll.
 Neben den Domainamen muss weiterhin der Pfad auf dem FTP Server angegeben werden, damit die Skripte
