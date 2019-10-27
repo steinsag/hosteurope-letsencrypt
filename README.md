@@ -105,7 +105,6 @@ Lege nun eine _Umleitung_ an mit folgenden Parametern:
 In der oben genannten Ziel-URL ist der Pfadanteil `www/` enthalten. Dieses Verzeichnis musst Du selbst (z.B. per FTP) innerhalb von `cust_upload/` anlegen. Ausserdem muss dieser Pfad als Mapping in __domains.json__ angegeben werden, damit der Upload des Tokens die Datei wie von _Let's Encrypt_ erwartet erzeugen kann.
 
 
-
 ## Nutzung
 
 Ein neues Zertifikat wird erstellt mittels:
