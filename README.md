@@ -86,11 +86,11 @@ Die Hosteurope Bloghosting Pakete kontrollieren die Dateien in `/`; als Kunde ka
 Wir müssen also sicherstellen, dass die Validierung über `/.well-known/acme-challenge/<TOKEN>` funktioniert, in dem die von diesen Skripten (`validate.py` automatisiert den Tokenupload über FTP) erzeugte Datei geladen wird.
 
 
-Installiere das Wordpress Plugin [__Redirection__](https://redirection.me/)
+Installiere das Wordpress Plugin [__Redirection__](https://redirection.me/)_
 
 In den Optionen des Plugins setze __IP-Protokollierung__ auf `keine` oder `Anonymisiert` #DSGVO
 
-Damit das Redirection Plugin funktioniert, muss eine von Wordpress verwaltete `.htaccess` vorhanden sein. Diese kannst du automatisch erzeugen lassen, indem Du _Einstellungen > Permalinks_ öffnest und speicherst.
+Damit das Redirection Plugin funktioniert, muss eine Wordpress `.htaccess` vorhanden sein. Diese kannst du automatisch erzeugen lassen, indem Du _Einstellungen > Permalinks_ öffnest und speicherst.
 
 Lege nun eine _Umleitung_ an mit folgenden Parametern:
 | Parameter | Wert |
