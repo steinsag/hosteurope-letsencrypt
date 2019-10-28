@@ -20,8 +20,9 @@ filename = os.environ['CERTBOT_TOKEN']
 content = os.environ['CERTBOT_VALIDATION']
 
 logging.debug('Domain: ' + domain)
-logging.debug('Dateiname: ' + filename)
 logging.debug('Inhalt: ' + content)
+logging.debug('Dateiname: ' + filename)
+
 
 path = DOMAINS.get(domain)
 if not path:
