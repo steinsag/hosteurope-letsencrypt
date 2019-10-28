@@ -120,8 +120,8 @@ Ein bestehendes Zertifikat wird verlängert mittels:
 
     sudo python3 verlaengern.py
     
-Wenn die Skripte mit Root-Rechten laufen, wird _certbot_ die generierten Zertifikate unter _/etc/letsencrypt_
-ablegen. Wird _certbot_ als user aufgerufen, werden die _certbot_ Parameter `--work-dir, --config-dir, --logs-dir` gesetzt und _~/.config/hosteurope-letsencrypt_ als Basis verwendet.
+Wenn die Skripte mit Root-Rechten laufen, legt _certbot_ die generierten Zertifikate unter _/etc/letsencrypt_
+ab. Wird _certbot_ als user aufgerufen, werden die _certbot_ Parameter `--work-dir, --config-dir, --logs-dir` gesetzt und _~/.config/hosteurope-letsencrypt_ als Basis verwendet.
 
 Die folgenden Abschnitte erklären im Detail, was bei jedem Skript genau geschieht.   
 
@@ -179,9 +179,5 @@ hochgeladen werden:
 
 Das Passwort Feld muss leer bleiben!
 
-Nach dem Hochladen startet Hosteurope den Webserver neu und das Zertifikat ist innerhalb weniger Minuten
-online.
-
-
-
+Nach dem Hochladen startet Hosteurope den Webserver neu und das Zertifikat ist innerhalb weniger Minuten online.
 
