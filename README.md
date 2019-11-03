@@ -95,7 +95,7 @@ Wir müssen also sicherstellen, dass die Validierung über `/.well-known/acme-ch
 | Parameter            | Wert                                                                 |
 |----------------------|----------------------------------------------------------------------|
 | URL-Quelle           | `^/\.well-known/acme-challenge/(.*)`                                 |
-| Titel                | `true` aktiviert die Verwendung der Let's Encrypt Staging Umgebung.  |
+| Titel                | `Let's Encrypt Domain Validation`                                    |
 | Passend              | `Nur URL`                                                            |
 | Wenn übereinstimmend | `Umleitung zur URL`                                                  |
 | HTTP-Status Code     | `301 Dauerhaft verschoben`                                           |
