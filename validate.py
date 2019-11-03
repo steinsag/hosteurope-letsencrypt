@@ -23,7 +23,6 @@ logging.debug('Domain: ' + domain)
 logging.debug('Inhalt: ' + content)
 logging.debug('Dateiname: ' + filename)
 
-
 path = DOMAINS.get(domain)
 if not path:
     logging.debug('Kein Mapping für Domain gefunden. Breche ab!')
