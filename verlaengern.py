@@ -20,12 +20,14 @@ if not is_root and not os.path.exists(certbot_logs_dir):
 # Einstellungen einlesen
 with open(config_file('einstellungen.json')) as cfg_file:
     config = json.load(cfg_file)
+email = config['email']
 staging = config['staging']
 
 challenge = config.get('preferred-challenge', 'http')
 
 # certbot Kommando zusammenbauen
 cmd = 'certbot certonly -n --manual --agree-tos --manual-public-ip-logging-ok'
+cmd += ' -m ' + email
 if 'http' == challenge:
     cmd += ' --manual-auth-hook "python3 validate.py"'
 if staging:
