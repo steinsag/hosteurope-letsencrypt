@@ -12,7 +12,7 @@ import sys
 cfg_file = open(config_file('einstellungen.json'))
 config = json.load(cfg_file)
 
-async def set_certificate_for(browser, url, certificate_folder, domain_name):
+async def set_certificate_for(browser, url, cert_file, key_file, domain_name):
     page = await browser.newPage()
     await page.goto(url, {'waitUntil': 'networkidle2'})
     await page.setViewport({'width': 1366, 'height': 1000})
@@ -21,14 +21,14 @@ async def set_certificate_for(browser, url, certificate_folder, domain_name):
     certfileUpload = await page.querySelector("input[name=certfile]")
     keyfileUpload = await page.querySelector("input[name=keyfile]")
     
-    await certfileUpload.uploadFile(os.path.join(certificate_folder, domain_name, 'cert.pem'))
-    await keyfileUpload.uploadFile(os.path.join(certificate_folder, domain_name, 'privkey.pem'))
+    await certfileUpload.uploadFile(cert_file)
+    await keyfileUpload.uploadFile(key_file)
 
     await page.focus("input[name=keypass]")
     await page.keyboard.press("Enter")
     time.sleep(1)
     await page.waitForNavigation({'waitUntil': 'networkidle2'})
-    await page.screenshot({'path': domain_name+'.log.png'})
+    await page.screenshot({'path': domain_name+'.log.jpeg'})
     time.sleep(10)
     await browser.close()
 
@@ -49,8 +49,9 @@ async def set_certificate():
     await page.waitForNavigation({'waitUntil': 'networkidle2'})
     time.sleep(1)
 
-    certificate_folder = os.path.expanduser('~/.config/hosteurope-letsencrypt/live')
     for (domain, url) in cert_config.items():
-        await set_certificate_for(browser, url, certificate_folder, domain)
+        cert_file = config_file(os.path.join('live', domain, 'cert.pem'))
+        key_file = config_file(os.path.join('live', domain, 'privkey.pem'))
+        await set_certificate_for(browser, url, cert_file, key_file, domain)
 
 asyncio.get_event_loop().run_until_complete(set_certificate())
