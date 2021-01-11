@@ -22,6 +22,7 @@ Für die Nutzung der Skripte wird benötigt:
 
 - Python 3
 - [certbot](https://certbot.eff.org/)
+- [pypeteer](https://pyppeteer.github.io/pyppeteer) (for automatic certificate upload)
 
 Die Skripte wurden unter Linux sowie dem Windows Subsystem for Linux getestet und 
 [das Vorgehen auf diesem Blog beschrieben](https://sebstein.hpfsc.de/2017/09/17/lets-encrypt-mit-hosteurope-webhosting-nutzen/).
@@ -42,7 +43,9 @@ zum Beispiel noch mit den richtigen Parametern experimentiert.
     {
       "email": "webmaster@example.com",
       "staging": false,
-      "preferred-challenge": "http"
+      "preferred-challenge": "http",
+      "kis-username": "sso-username",
+      "kis-password": "my sso password".
     }
 
 | Parameter | Bedeutung |
@@ -50,6 +53,8 @@ zum Beispiel noch mit den richtigen Parametern experimentiert.
 | email |  E-Mail Adresse für den Let's Encrypt Account. |
 | staging | `true` aktiviert die Verwendung der Let's Encrypt Staging Umgebung. |
 | preferred-challenge |  `http` oder `dns`. Setzt die zu verwendende [Let's Encrypt Challenge](https://letsencrypt.org/docs/challenge-types/ ) auf HTTP oder DNS. |
+| kis-username | Username, that you use to log into sso.hosteurope.de (only needed for certificate replacement)
+| kis-password | Password, that you use to log into sso.hosteurope.de (only needed for certificate replacement)
 
 
 In der Datei __domains.json__ gibt man die Domains an, für die ein Zertifikat erstellt werden soll.
@@ -65,6 +70,15 @@ Es können natürlich nicht nur Sub-Domains, sondern alle im WebHosting Paket en
 Da Let's Encrypt erst 
 [experimentelle Unterstützung für Wildcard Zertifikate](https://letsencrypt.org/2017/07/06/wildcard-certificates-coming-jan-2018.html)
 bietet, muss jede Sub-Domain einzeln aufgeführt werden!
+
+In der Datei __cert-urls.json__ gibt man die URLs an, unter denen das Zertifikat für eine bestimmte Domain ersetzt werden kann.
+
+    {
+        "example.com": "https://kis.hosteurope.de/administration/webhosting/admin.php?menu=6&wp_id=....&mode=sslupload&v_id=....",
+        "example2.com": "https://kis.hosteurope.de/administration/webhosting/admin.php?menu=6&wp_id=....&mode=sslupload&v_id=....",
+    }
+
+Die entsprechende URL findet man normalerweise über `Webhosting > Konfigurieren > Sicherheit & SSL > SSL Administrieren > example.com > Ersetzen`
 
 In der Datei __ftp.json__ gibt man die FTP Zugangsdaten an. Diese werden vom __validate.py__ Skript genutzt,
 um per FTP die entsprechenden Validierungstoken auf dem Webserver zu platzieren.
