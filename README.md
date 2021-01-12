@@ -167,6 +167,11 @@ _/etc/letsencrypt_ oder als User unter _~/.config/hosteurope-letsencrypt_ ab.
 Die Zertifikatsdateien enthalten eine Nummer in ihrem Dateinamen, die bei jeder Verlängerung um 1 hochgezählt wird.
 Das neueste Zertifikat ist immer jenes, mit der höchsten Nummer im Dateinamen.
 
+### Zertifikat einbinden (set_certificate.py)
+
+Durch _certbot_ wird ein Zertifikat erstellt, das alle angegebenen Domains abdeckt. Dieses Zertifikat muss
+jedoch noch im Hosteurope KIS eingebungen werden. Der Skript __set_certificate.py__ kann das automatisieren
+: Für alle in `cert-urls.json` eingetragenen Domains ersetzt er das Zertifikat.
 
 ### Zertifikat manuell im KIS einbinden
 
