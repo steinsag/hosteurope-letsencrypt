@@ -45,7 +45,8 @@ zum Beispiel noch mit den richtigen Parametern experimentiert.
       "staging": false,
       "preferred-challenge": "http",
       "kis-username": "sso-username",
-      "kis-password": "my sso password".
+      "kis-password": "my sso password",
+      "kis-2fa": true
     }
 
 | Parameter | Bedeutung |
@@ -55,6 +56,7 @@ zum Beispiel noch mit den richtigen Parametern experimentiert.
 | preferred-challenge |  `http` oder `dns`. Setzt die zu verwendende [Let's Encrypt Challenge](https://letsencrypt.org/docs/challenge-types/ ) auf HTTP oder DNS. |
 | kis-username | Username, that you use to log into sso.hosteurope.de (only needed for certificate replacement)
 | kis-password | Password, that you use to log into sso.hosteurope.de (only needed for certificate replacement)
+| kis-2fa | Boolean indicating whether you use 2FA to log into sso.hosteurope.de (only needed for certificate replacement)
 
 
 In der Datei __domains.json__ gibt man die Domains an, für die ein Zertifikat erstellt werden soll.
