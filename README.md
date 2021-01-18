@@ -171,6 +171,11 @@ Das neueste Zertifikat ist immer jenes, mit der höchsten Nummer im Dateinamen.
 
 ### Zertifikat einbinden (set_certificate.py)
 
+`set_certificate` benötigt das Python-Paket `pyppeteer`. 
+Das Paket kann man über `pip install pyppeteer` installieren.
+Alternativ kann auch pipenv verwendet werden: Dafür muss man `pipenv` auf dem System installieren.
+Danach kann mit `pipenv shell` und `pipenv install` die nötige Abhängigkeit hinzugefügt werden.
+
 Durch _certbot_ wird ein Zertifikat erstellt, das alle angegebenen Domains abdeckt. Dieses Zertifikat muss
 jedoch noch im Hosteurope KIS eingebungen werden. Der Skript __set_certificate.py__ kann das automatisieren
 : Für alle in `cert-urls.json` eingetragenen Domains ersetzt er das Zertifikat.
@@ -195,3 +200,9 @@ hochgeladen werden:
 Das Passwort Feld muss leer bleiben!
 
 Nach dem Hochladen startet Hosteurope den Webserver neu und das Zertifikat ist innerhalb weniger Minuten online.
+
+### DNS A Record anpassen
+
+Wenn für die Website vorher kein HTTPS verwendet wurde, muss auch der DNS `A` Record der Domain geändert werden.
+Die neue IP-Adresse wird unter `Domainservices > Domain-Administration > Namesserver- / DNS-Einträge ändern > mydomain.de` 
+als "SSL A-Record-IP" gelistet.
