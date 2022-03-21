@@ -26,7 +26,7 @@ staging = config['staging']
 challenge = config.get('preferred-challenge', 'http')
 
 # certbot Kommando zusammenbauen
-cmd = 'certbot certonly -n --manual --agree-tos --manual-public-ip-logging-ok'
+cmd = 'certbot certonly -n --manual --agree-tos'
 cmd += ' -m ' + email
 if 'http' == challenge:
     cmd += ' --manual-auth-hook "python3 validate.py"'
