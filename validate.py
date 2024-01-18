@@ -34,6 +34,7 @@ with open(config_file('ftp.json')) as ftp_file:
 
 # mit FTP verbinden
 ftp = ftplib.FTP_TLS(ftp_cfg['server'], ftp_cfg['login'], ftp_cfg['passwort'])
+ftp.prot_p()
 root_dir = ftp.pwd()
 
 # zum Pfad navigieren, in dem Challenge angelegt werden muss
