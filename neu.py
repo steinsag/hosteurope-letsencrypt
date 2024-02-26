@@ -48,4 +48,16 @@ if answer != 'j':
     exit(0)
 
 # neues Zertifikat erstellen
-os.system(cmd)
+if not 'dns' == challenge:
+    os.system(cmd)
+else:
+    print('Folgenden Aufruf ausführen:')
+    print('')
+    print(f'    {cmd}')
+    print('')
+    print('Dann in einem separaten Terminal das Skript set_dns_challenge.py mit den Parametern aus dem obigen Aufruf starten!')
+    print('')
+    print(f'    ./set_dns_challenge.py --domain <*.domain.tld> --challenge <challenge-string>')
+    print('')
+    print('Ca. 15 Sekunden warten bis die DNS-Änderungen verfügbar sind und dann im ersten Terminal ENTER drücken.')
+
