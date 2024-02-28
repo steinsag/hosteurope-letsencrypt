@@ -169,6 +169,27 @@ _/etc/letsencrypt_ oder als User unter _~/.config/hosteurope-letsencrypt_ ab.
 Die Zertifikatsdateien enthalten eine Nummer in ihrem Dateinamen, die bei jeder Verlängerung um 1 hochgezählt wird.
 Das neueste Zertifikat ist immer jenes, mit der höchsten Nummer im Dateinamen.
 
+### DNS Challenge eintragen (set_dns_challenge.py)
+
+`set_dns_challenge` benötigt das Python-Paket `pyppeteer`. 
+Das Paket kann man über `pip install pyppeteer` installieren.
+Alternativ kann auch pipenv verwendet werden: Dafür muss man `pipenv` auf dem System installieren.
+Danach kann mit `pipenv shell` und `pipenv install` die nötige Abhängigkeit hinzugefügt werden.
+
+Durch _certbot_ wird bei einer Validierung per DNS eine DNS Challenge erwartet. In der Regel wird dieses Verfahren für Wildcard Domains (*.domain.de) genutzt und setzt einen DNS TXT record vorraus in dem der Challenge-String angegeben werden muss. Der DNS-Eintrag muss vorher per Hand angelegt werden, unter `Domainservices > Domain-Administration > Namesserver- / DNS-Einträge ändern > mydomain.de`. Dort muss ein neuer TXT Eintrag mit `_acme-challenge.domain.de` angelegt werden. Das Skript `set_dns_challenge.py` erlaubt das automatisierte Eintragen des Challenge-String.
+Dazu wird das Skript mit der Domain und dem Challenge-String aus _certbot_ als Parametern gestartet. 
+
+    ./set_dns_challenge.py -d *.domain.de -c 3940jw09spfi3wq9rwjiefpw93r0w9
+
+Die Domains und dazu passenden URLs aus KIS, die das Skript benötigt, können in der domains.json eingetragen werden. (Auch parallel zu Eintragen zur http Validierung.) Die benötigte Seite der URL ist dieselbe wie zum Eintragen des TXT Records oben.
+
+    {
+        "*.example.com": "https://kis.hosteurope.de/administration/domainservices/index.php?menu=....&mode=autodns&submode=edit&domain=....",
+        "*.example.de": "https://kis.hosteurope.de/administration/domainservices/index.php?menu=....&mode=autodns&submode=edit&domain=...."
+    }
+
+Nach Ausführen den Skripts dauert es ca. 10-15 Sekunden bis der DNS-Eintrag aktualisiert verfügbar ist. Dann kann im _certbot_ Enter gedrückt werden, um die DNS-Challenge zu prüfen.
+ 
 ### Zertifikat einbinden (set_certificate.py)
 
 `set_certificate` benötigt das Python-Paket `pyppeteer`. 
