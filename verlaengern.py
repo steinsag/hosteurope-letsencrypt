@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 # coding=utf-8
-import json
-import os
 
 from shared import prepare_domain_list, get_config, prepare_certbot_dirs, process_cert_request
 

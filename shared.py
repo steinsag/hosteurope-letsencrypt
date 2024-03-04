@@ -5,14 +5,17 @@ import os
 # Is script started as root?
 is_root = os.geteuid() == 0
 
+
 def config_file(name):
     f = os.path.expanduser('~/.config/hosteurope-letsencrypt/' + name)
     return os.path.abspath(name if os.path.isfile(name) or not os.path.isfile(f) else f)
+
 
 # Einstellungen einlesen
 def get_config(file):
     with open(config_file(file)) as cfg_file:
         return json.load(cfg_file)
+
 
 # Prepares log, work and config dirs for certbot
 def prepare_certbot_dirs():
@@ -34,6 +37,7 @@ def prepare_certbot_dirs():
 
     return certbot_dirs
 
+
 # Domain Mapping einlesen
 def prepare_domain_list():
     domain_map = get_config('domains.json')
@@ -42,9 +46,10 @@ def prepare_domain_list():
     domain_list = ' -d ' + ' -d '.join(domain_map.keys())
     return domain_list
 
+
 # Zertifikat erstellen
 def process_cert_request(cmd, challenge_type):
-    if not 'dns' == challenge_type:
+    if challenge_type != 'dns':
         os.system(cmd)
     else:
         print('Folgenden Aufruf ausführen:')
@@ -53,9 +58,6 @@ def process_cert_request(cmd, challenge_type):
         print('')
         print('Dann in einem separaten Terminal das Skript set_dns_challenge.py mit den Parametern aus dem obigen Aufruf starten!')
         print('')
-        print(f'    ./set_dns_challenge.py --domain <*.domain.tld> --challenge <challenge-string>')
+        print('    ./set_dns_challenge.py --domain <*.domain.tld> --challenge <challenge-string>')
         print('')
         print('Ca. 15 Sekunden warten bis die DNS-Änderungen verfügbar sind und dann im ersten Terminal ENTER drücken.')
-
-
-
