@@ -9,7 +9,7 @@ challenge = config.get('preferred-challenge', 'http')
 # certbot Kommando zusammenbauen
 cmd = 'certbot certonly --manual --agree-tos --expand'
 cmd += ' -m ' + config['email']
-if 'http' == challenge:
+if challenge == 'http':
     cmd += ' --manual-auth-hook "python3 validate.py" -n'
 if config['staging']:
     cmd += ' --staging'

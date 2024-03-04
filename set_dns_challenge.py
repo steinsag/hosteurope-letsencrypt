@@ -82,7 +82,7 @@ async def set_challenge():
     time.sleep(1)
 
     # 2FA
-    if (config["kis-2fa"]):
+    if config["kis-2fa"]:
         print("Starte 2FA")
         await page.focus("input[id=1]")
         await page.keyboard.type(input("Enter the 2FA you got via SMS here: "))
@@ -91,9 +91,9 @@ async def set_challenge():
         time.sleep(1)
 
     # process domains
-    for (domain_cfg,
-         url) in domains_file.items():  # url as "https://kis.hosteurope.de/administration/domainservices/index.php?menu=<idx>&mode=autodns&submode=edit&domain=<domain.de>"
-        if (domain_cfg in domain):
+    # url as "https://kis.hosteurope.de/administration/domainservices/index.php?menu=<idx>&mode=autodns&submode=edit&domain=<domain.de>"
+    for (domain_cfg, url) in domains_file.items():
+        if domain_cfg in domain:
             if domain_cfg.startswith("*."):
                 domain_name = domain_cfg[2:]
             else:
