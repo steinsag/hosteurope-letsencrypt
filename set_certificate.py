@@ -4,7 +4,7 @@ import json
 import os
 import asyncio
 from pyppeteer import launch
-from shared import domain_list, config_file
+from shared import config_file
 import time
 import sys
 

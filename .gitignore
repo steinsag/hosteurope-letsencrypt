@@ -2,6 +2,9 @@ einstellungen.json
 ftp.json
 domains.json
 cert-urls.json
+*.log.jpeg
+.DS_Store
+launch.json
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
