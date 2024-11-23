@@ -7,7 +7,7 @@ config = get_config('einstellungen.json')
 challenge = config.get('preferred-challenge', 'http')
 
 # certbot Kommando zusammenbauen
-cmd = 'certbot certonly --manual --agree-tos --manual-public-ip-logging-ok'
+cmd = 'certbot certonly --manual --agree-tos'
 cmd += ' -m ' + config['email']
 cmd += ' --preferred-challenge=' + challenge
 if 'http' == challenge:
