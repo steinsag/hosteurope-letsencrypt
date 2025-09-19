@@ -1,9 +1,23 @@
 # coding=utf-8
 import json
 import os
+import platform
+
+def is_admin():
+    """Check if script is running with admin/root privileges"""
+    try:
+        if platform.system() == "Windows":
+            import ctypes
+            return ctypes.windll.shell32.IsUserAnAdmin() != 0
+        else:
+            # Unix/Linux/macOS
+            return os.geteuid() == 0
+    except:
+        return False
+
 
 # Is script started as root?
-is_root = os.geteuid() == 0
+is_root = is_admin()
 
 
 def config_file(name):
